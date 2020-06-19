@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../Navbar/index.css';
+import './index.css';
 
 
 export default function Navbar(props) {
@@ -13,7 +13,7 @@ export default function Navbar(props) {
                         <a href="#!" className="brand-logo">tibii</a>
                         {props.config.optionsNavBar &&
                             <ul className="right hide-on-med-and-down">
-                                <li className="mt10 mr20"><h6><b>Escoge que tiendas quieres ver </b></h6></li>
+                                <li className="mt10 mr20"><h6><b>Escoge que tiendas quieres ver</b></h6></li>
                                 <li><a className="waves-effect waves-light" href="#!"><i className="material-icons left">pets</i>Mascotas</a></li>
                                 <li><a className="waves-effect waves-light" href="#!"><i className="material-icons left">face</i>Peluqueria</a></li>
                                 <li><button className="waves-effect waves-light btn-small ml10 mr30">Ingresar</button></li>
