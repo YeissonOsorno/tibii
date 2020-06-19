@@ -2,13 +2,14 @@
 const express = require('express');
 const app =  express();
 
-// Do it Routes
-//const Routes = require('');
+// Import Routes
+const adminRoutes = require('./routes/admin.routes');
+const clientRoutes = require('./routes/client.routes');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-// Permisos de escritura y lectura de la API o permisos de CORS
+// API write and read permissions or CORS permissions
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods','GET, PUT, POST, DELETE');
@@ -17,8 +18,9 @@ app.use(function(req,res,next){
     next();
 });
 
-// Do it
-//app.use('/api',Routes);
+// use Routes
+app.use('/admin',adminRoutes);
+app.use('/client',clientRoutes);
 
 module.exports = app;
 
