@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-**Description of the task to be done. **
+**Description of the task to be done.**
 Brief description of what you want to do to be added to the project ...
 
 **Time limit to complete this task.**
