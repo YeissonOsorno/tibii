@@ -3,7 +3,7 @@ const express = require('express');
 const app =  express();
 
 // Do it Routes
-const Routes = require('');
+//const Routes = require('');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -18,7 +18,7 @@ app.use(function(req,res,next){
 });
 
 // Do it
-app.use('/api',Routes);
+//app.use('/api',Routes);
 
 module.exports = app;
 
