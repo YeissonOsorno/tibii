@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 // Importacion de estilos //
 import './sigin.css'
@@ -9,6 +9,13 @@ import Form from '../../../components/FormSigin/index';
 
 
 export default function Sigin() {
+
+    const [data, setData] = useState();
+
+    const onSubmit = (dataForm) => {
+        setData(dataForm);
+    }
+
     return (
         <Fragment>
             <NavBar config={{ optionsNavBar: false }} />
@@ -26,7 +33,7 @@ export default function Sigin() {
                     </div>
                     <div className="col s12 m7 l7 xl7">
                         <h3>Crea tu cuenta</h3>
-                        <Form />
+                        <Form onSubmit={onSubmit} />
                     </div>
                 </div>
             </main>
