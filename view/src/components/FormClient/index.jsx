@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmitClient }) {
 
     const { register, handleSubmit, errors } = useForm();
     const [data, setData] = useState({
@@ -17,10 +17,10 @@ export default function Form({ onSubmit }) {
     return (
         <form onSubmit={
             handleSubmit(() => {
-                onSubmit(data);
+                onSubmitClient(data);
             })
         }
-            id="form-hook" className="container mt30">
+            id="form-client" className="container mt30">
             <div className="row">
                 <div className="col s12 m6 l6 xl6 input-field">
                     <input placeholder="Nombre"

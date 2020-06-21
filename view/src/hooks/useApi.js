@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function useApi(method, url) {
+export default function useApi(method, url, headers) {
   const [result, setResult] = useState({
     loading: false,
     response: null,
@@ -11,7 +11,7 @@ export default function useApi(method, url) {
   const handleApi = async (data) => {
     setResult({ ...result, loading: true });
     try {
-      const response = await axios({ method, url, data });
+      const response = await axios({ method, url, data, headers });
       if (response.status !== 200) throw new Error(response.statusText);
       setResult({
         ...result,
@@ -27,3 +27,4 @@ export default function useApi(method, url) {
 
   return [result, handleApi];
 }
+

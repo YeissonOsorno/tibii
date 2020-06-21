@@ -1,19 +1,33 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 // Importacion de estilos //
 import './sigin.css'
 
 // Importacion de componentes //
 import NavBar from '../../../components/Navbar/index';
-import Form from '../../../components/FormSigin/index';
+import FormClient from '../../../components/FormClient/index';
+import FormCompany from '../../../components/FormCompany/index';
+
 
 
 export default function Sigin() {
 
-    const [data, setData] = useState();
+    const [dataCliente, setDataClient] = useState();
+    const [dataCompany, setDataCompany] = useState();
+    const [toggleForm, setToggleForm] = useState(false);
 
-    const onSubmit = (dataForm) => {
-        setData(dataForm);
+    useEffect(() => {
+        if (dataCliente !== undefined) {
+            setToggleForm(true);
+        }
+    }, [dataCliente])
+
+    const onSubmitClient = (dataForm) => {
+        setDataClient(dataForm);
+    }
+
+    const onSubmitCompany = (dataForm) => {
+        setDataCompany(dataForm);
     }
 
     return (
@@ -33,7 +47,10 @@ export default function Sigin() {
                     </div>
                     <div className="col s12 m7 l7 xl7">
                         <h3>Crea tu cuenta</h3>
-                        <Form onSubmit={onSubmit} />
+                        {!toggleForm ?
+                            <FormClient onSubmitClient={onSubmitClient} /> :
+                            <FormCompany onSubmitCompany={onSubmitCompany} toggleForm={toggleForm}/>
+                        }
                     </div>
                 </div>
             </main>
