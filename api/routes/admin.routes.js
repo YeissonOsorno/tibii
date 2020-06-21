@@ -9,6 +9,11 @@ const userController =  require('../controllers/admin/users.controller');
 Router.get('/',userController.home);
 // Routes Users
 Router.post('/users',userController.saveUser);
+Router.get('/users/:id',userController.getUser);
+Router.get('/users',userController.getUsers);
+Router.put('/users/:id',userController.updateUser);
+
+// Routes Json Web Token
 Router.post('/account',userController.loginUser);
 
 module.exports = Router;

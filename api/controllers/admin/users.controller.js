@@ -56,27 +56,6 @@ function saveUser(req,res,next){
     }
 
 }
-
-/*function loginUser(req, res,next){
-    const params = req.body;
-    const emailUser = params.email;
-    const password = params.password;
-    //Query para revisar si existe en la base de datos
-    userModel.findOne({email : emailUser},(error,user)=>{
-        if (error) return res.status(500).send({ message: 'Error in request, check connection to database' });
-        if(user){
-            bcrypt.compare(password, user.passwordUser, (error, check) => {
-                if (error) return res.status(500).send(error);//return res.status(500).send({ message: "Password couldn't be encrypted" });
-                if(check){                
-                    if(params.gettoken){
-                        return res.status(200).send({token:jwt.createToken(user)})
-                    }else{ return res.status(200).send(user)}
-                }else{ return res.status(404).send({message:'user not was identified'})}
-            
-            });
-        }else{return res.status(404).send({message:'El usere no existe'})}
-    })
-}*/
 function loginUser(req, res){
     const params = req.body;
     const emailUser = params.email;
@@ -97,8 +76,65 @@ function loginUser(req, res){
         }else{return res.status(404).send({message:'The user no exists'})}
     })
 }
+
+function getUser(req,res){
+    /*We collect the id by URL, when it is by URL we use .params, when it is by post or get we use .body*/
+    const userId = req.params.id;
+    userModel.findById(userId, (error, user) => {
+        /*validate if exists any error with connection that database */
+        if(error) return res.status(500).send({message:'was ocurred an error connection or search'})
+        if(!user) return res.status(404).send({message:'No se encuentra el usuario o no existe'})
+        return res.status(200).send({user});
+    });
+}
+
+async function getUsers (req,res,next){
+    try {
+        const user = await userModel.find({});
+        return res.status(200).send({user});
+    } catch (error) {
+        next();
+        return res.status(404).send(error);   
+         
+    }
+}
+
+/*async function updateUser(req, res){
+    var userId = req.params.id;
+    var update = req.body;
+   await userModel.findByIdAndUpdate({_id:userId}, update, { new: true }, (error, userUpdated) => {
+        if (error) return res.status(500).send({ message: 'Error request, error in the server' });
+        if (!userUpdated) return res.status(404).send({ message: 'Error, not was updated client' });
+        console.log( userUpdated );
+        return res.status(202).send({ message: "Usuario actualizado correctamente" });
+    });
+
+}*/
+function updateUser(req, res){
+    //var clientId = req.params.id;
+    //var update = req.body;
+    await userModel.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true },(error, clientUpdated) => {
+        if (error) return res.status(500).send({ message: 'Error request, error in the server' });
+        if (!clientUpdated) return res.status(404).send({ message: 'Error, not was updated client' });
+        return res.status(202).send({ Client: clientUpdated });
+    });    
+}
+function deleteUser(req, res){
+    //var clientId = req.params.id;
+    //var update = req.body;
+    await userModel.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true },(error, clientUpdated) => {
+        if (error) return res.status(500).send({ message: 'Error request, error in the server' });
+        if (!clientUpdated) return res.status(404).send({ message: 'Error, not was updated client' });
+        return res.status(202).send({ Client: clientUpdated });
+    });    
+}
+
 module.exports = {
     home,
     saveUser,
-    loginUser
+    loginUser,
+    getUser,
+    getUsers,
+    updateUser,
+    deleteUser
 }
