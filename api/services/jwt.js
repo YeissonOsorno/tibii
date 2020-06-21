@@ -11,7 +11,7 @@ exports.createToken =  function(modelUser){
         email:modelUser.email,
 
         iat:moment().unix,
-        exp:moment.add(10,'minutes').unix
+        exp:moment().add(10,'minutes').unix
     };
     return jwt.encode(payload,secret)
 };
