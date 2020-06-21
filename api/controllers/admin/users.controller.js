@@ -99,33 +99,24 @@ async function getUsers (req,res,next){
     }
 }
 
-/*async function updateUser(req, res){
-    var userId = req.params.id;
-    var update = req.body;
-   await userModel.findByIdAndUpdate({_id:userId}, update, { new: true }, (error, userUpdated) => {
-        if (error) return res.status(500).send({ message: 'Error request, error in the server' });
-        if (!userUpdated) return res.status(404).send({ message: 'Error, not was updated client' });
-        console.log( userUpdated );
-        return res.status(202).send({ message: "Usuario actualizado correctamente" });
-    });
 
-}*/
-function updateUser(req, res){
-    //var clientId = req.params.id;
-    //var update = req.body;
-    await userModel.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true },(error, clientUpdated) => {
-        if (error) return res.status(500).send({ message: 'Error request, error in the server' });
-        if (!clientUpdated) return res.status(404).send({ message: 'Error, not was updated client' });
-        return res.status(202).send({ Client: clientUpdated });
-    });    
+
+function updateUser(request, response){
+    var userId = request.params.id;
+    var update = request.body;
+    userModel.findByIdAndUpdate(userId, update, { new: true }, (error, userUpdated) => {
+        if (error) return response.status(500).send({ message: 'Error request, error in the server' });
+        if (!userUpdated) return response.status(404).send({ message: 'Error, not was updated client' });
+        return response.status(202).send({ Client: userUpdated });
+    });
 }
 function deleteUser(req, res){
-    //var clientId = req.params.id;
-    //var update = req.body;
-    await userModel.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true },(error, clientUpdated) => {
+    var userId = req.params.id;
+    var update = req.body.status;
+     userModel.findByIdAndUpdate(userId,update, { new: true },(error, userDeleted) => {
         if (error) return res.status(500).send({ message: 'Error request, error in the server' });
-        if (!clientUpdated) return res.status(404).send({ message: 'Error, not was updated client' });
-        return res.status(202).send({ Client: clientUpdated });
+        if (!userUpdated) return res.status(404).send({ message: 'Error, not was deleted client' });
+        return res.status(202).send({ Client: userDeleted });
     });    
 }
 
