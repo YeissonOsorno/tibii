@@ -1,11 +1,7 @@
 'use strict';
-const express = require('express');
 const productModel = require('../../models/admin/Product.model');
-const moment =  require('moment');
-const bcrypt = require('bcrypt-nodejs');
-const jwtService = require('../../services/jwt');
 
-function saveProduct(req,res,next){
+function saveProduct(req,res){
     const params =  req.body;
     var product = new productModel();
     if(params.name && params.price && params.category){

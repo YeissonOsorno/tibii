@@ -5,6 +5,7 @@ const Router =  express.Router();
 // Import controllers
 const userController =  require('../controllers/admin/users.controller');
 const productController = require('../controllers/admin/products.controller');
+const companyController = require('../controllers/admin/companies.controller');
 
 // Routes of API
 Router.get('/',userController.home);
@@ -24,5 +25,9 @@ Router.get('/products/:id',productController.getProduct);
 Router.get('/products',productController.getProducts);
 Router.put('/products/:id',productController.updateProduct);
 Router.delete('/products/:id',productController.deleteProduct);
+
+// Routes Companies
+Router.post('/companies', companyController.saveCompany);
+Router.put('/companies/:id', companyController.updateCompany);
 
 module.exports = Router;
