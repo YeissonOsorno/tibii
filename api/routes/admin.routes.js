@@ -4,6 +4,7 @@ const Router =  express.Router();
 
 // Import controllers
 const userController =  require('../controllers/admin/users.controller');
+const productController = require('../controllers/admin/products.controller');
 
 // Routes of API
 Router.get('/',userController.home);
@@ -16,5 +17,12 @@ Router.put('/users/:id',userController.deleteUser);
 
 // Routes Json Web Token
 Router.post('/account',userController.loginUser);
+
+// Routes Products
+Router.post('/products', productController.saveProduct);
+Router.get('/products/:id',productController.getProduct);
+Router.get('/products',productController.getProducts);
+Router.put('/products/:id',productController.updateProduct);
+Router.delete('/products/:id',productController.deleteProduct);
 
 module.exports = Router;

@@ -5,7 +5,7 @@ const moment =  require('moment');
 const bcrypt = require('bcrypt-nodejs');
 const jwtService = require('../../services/jwt');
 const UserModel = require('../../models/admin/User.model');
-const { res } = require('express');
+
 
 
 function home(req,res,next){
