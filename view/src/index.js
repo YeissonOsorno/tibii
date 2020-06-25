@@ -10,13 +10,17 @@ import "./App.css";
 
 import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <Suspense fallback={"Cargando datos de firebase..."}>
-        <App />
-      </Suspense>
-    </FirebaseAppProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+ReactDOM.render( <
+    React.StrictMode >
+    <
+    FirebaseAppProvider firebaseConfig = { firebaseConfig } >
+    <
+    Suspense fallback = { "Cargando datos de firebase..." } >
+    <
+    App / >
+    <
+    /Suspense> < /
+    FirebaseAppProvider > <
+    /React.StrictMode>,
+    document.getElementById("root")
 );

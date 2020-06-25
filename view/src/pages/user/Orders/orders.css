@@ -1,0 +1,39 @@
+#cliente-login {
+  height: 92vh;
+}
+
+#cliente-login > div.row:nth-child(1) {
+  margin: 0;
+  height: 100%;
+}
+
+#cliente-login div.m5 {
+  background-color: #1aa149;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: whitesmoke;
+}
+
+#cliente-login div.m5 > ul > li {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+#cliente-login div.m5 ul > li > span {
+  margin-right: 8px;
+}
+
+#cliente-login div.m7 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
