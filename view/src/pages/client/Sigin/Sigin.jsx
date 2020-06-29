@@ -53,12 +53,12 @@ export default function Sigin() {
                         {!toggleForm ?
                             <>
                                 <h3>Crea tu cuenta</h3>
-                                <p className="container grey-text text-darken-2 pt10">Registra tus datos como dueño del negocio, esta información sera de utilidad para accerder al panel de control.</p>
+                                <p className="container grey-text text-darken-2 pt5">Registra tus datos como dueño del negocio, esta información sera de utilidad para accerder al panel de control.</p>
                                 <FormClient onSubmitClient={onSubmitClient} />
                             </> :
                             <>
                                 <h3>Datos del negocio</h3>
-                                <p className="container grey-text text-darken-2 pt10">Registra los datos acerca de tu negocio, esta informacion sera vizta por las personas que deseen comprar tus productos.</p>
+                                <p className="container grey-text text-darken-2 pt5">Registra los datos acerca de tu negocio, esta informacion sera vizta por las personas que deseen comprar tus productos.</p>
                                 <FormCompany onSubmitCompany={onSubmitCompany} toggleForm={toggleForm} />
                             </>
                         }
