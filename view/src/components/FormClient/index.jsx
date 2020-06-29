@@ -12,6 +12,7 @@ export default function Form({ onSubmitClient }) {
         lastname: "",
         email: "",
         password: "",
+        phone: ""
     });
 
     return (
@@ -20,7 +21,7 @@ export default function Form({ onSubmitClient }) {
                 onSubmitClient(data);
             })
         }
-            id="form-client" className="container mt30">
+            id="form-client" className="container mt20">
             <div className="row">
                 <div className="col s12 m6 l6 xl6 input-field">
                     <input placeholder="Nombre"
@@ -65,7 +66,7 @@ export default function Form({ onSubmitClient }) {
                 </div>
             </div>
             <div className="row">
-                <div className="input-field col s12 m12">
+                <div className="col s12 m6 l6 xl6 input-field">
                     <input placeholder="ejemplo@email.com"
                         onChange={(event) => {
                             setData({
@@ -83,6 +84,26 @@ export default function Form({ onSubmitClient }) {
                     <label htmlFor="email">Email</label>
                     {errors.email &&
                         <span className="new badge orange" data-badge-caption={errors?.email?.message} />
+                    }
+                </div>
+                <div className="col s12 m6 l6 xl6 input-field">
+                    <input placeholder="Numero de contacto"
+                        onChange={(event) => {
+                            setData({
+                                ...data,
+                                phone: event.target.value
+                            })
+                        }}
+                        defaultValue={data.phone}
+                        ref={
+                            register({
+                                required: { value: true, message: "Numero de contacto obligatorio" }
+                            })
+                        }
+                        type="tel" className="validate" name="phone" />
+                    <label htmlFor="phone">Numero de contacto</label>
+                    {errors.phone &&
+                        <span className="new badge orange" data-badge-caption={errors?.phone?.message} />
                     }
                 </div>
             </div>

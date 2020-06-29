@@ -13,7 +13,14 @@ export default function Form({ onSubmitCompany, toggleForm }) {
 
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/tibii/image/upload';
     const CLOUDINARY_PRESET = 'clients_logo';
-    const initialState = { company_name: "", company_address: "", company_category: "", company_logo: "https://image.flaticon.com/icons/svg/869/869636.svg" }
+    const initialState = {
+        company_name: "", company_address: {
+            city: "",
+            state: 'Antioquia',
+            country: 'Colombia',
+            address: ""
+        }, company_category: "", company_logo: "https://image.flaticon.com/icons/svg/869/869636.svg"
+    }
 
     const { register, handleSubmit, errors } = useForm();
 
@@ -52,7 +59,7 @@ export default function Form({ onSubmitCompany, toggleForm }) {
                 onSubmitCompany(data);
             })
         }
-            id="form-company" className="container mt30">
+            id="form-company" className="container mt20">
             <div className="row">
                 <div className="col s12 m6 l6 xl6 input-field">
                     <input placeholder="Nombre del negocio"
@@ -76,53 +83,87 @@ export default function Form({ onSubmitCompany, toggleForm }) {
                     }
                 </div>
                 <div className="col s12 m6 l6 xl6 input-field">
+                    <select name="company_category"
+                        onChange={(event) => {
+                            setData({
+                                ...data,
+                                company_category: event.target.value
+                            })
+                        }}
+                        defaultValue={data.company_category}
+                        ref={
+                            register({
+                                required: { value: true, message: "Debes escoger un sector" }
+                            })
+                        }
+                    >
+                        <option value="" disabled defaultValue>Escoge una opcion</option>
+                        <option value="1">Mascotas</option>
+                        <option value="2">Peluqueria</option>
+                        <option value="3">Otro</option>
+                    </select>
+                    <label htmlFor="company_category" >Sector del negocio</label>
+                    {errors.company_category &&
+                        <span className="new badge orange" data-badge-caption={errors?.company_category?.message} />
+                    }
+                </div>
+            </div>
+            <div className="row">
+                <div className="col s12 m6 l6 xl6 input-field">
                     <input placeholder="Direccion del negocio"
                         onChange={(event) => {
                             setData({
                                 ...data,
-                                company_address: event.target.value
+                                company_address: {
+                                    ...data.company_address,
+                                    address: event.target.value
+                                }
                             })
                         }}
-                        defaultValue={data.company_address}
+                        defaultValue={data.company_address.address}
                         ref={
                             register({
                                 required: { value: true, message: "Direccion del negocio obligatoria" }
                             })
                         }
                         type="text" className="validate" name="company_address" />
-                    <label htmlFor="lastname">Direccion del negocio</label>
+                    <label htmlFor="company_address">Direccion del negocio</label>
                     {errors.company_address &&
                         <span className="new badge orange" data-badge-caption={errors?.company_address?.message} />
                     }
                 </div>
-            </div>
-            <div className="row">
-                <div className="input-field col s12 m12">
-                    <div className="input-field col s12 m12">
-                        <select name="company_category"
-                            onChange={(event) => {
-                                setData({
-                                    ...data,
-                                    company_category: event.target.value
-                                })
-                            }}
-                            defaultValue={data.company_category}
-                            ref={
-                                register({
-                                    required: { value: true, message: "Debes escoger un sector" }
-                                })
-                            }
-                        >
-                            <option value="" disabled defaultValue>Escoge una opcion</option>
-                            <option value="1">Mascotas</option>
-                            <option value="2">Peluqueria</option>
-                            <option value="3">Otro</option>
-                        </select>
-                        <label htmlFor="company_category" >Sector del negocio</label>
-                    </div>
-
-                    {errors.company_category &&
-                        <span className="new badge orange" data-badge-caption={errors?.company_category?.message} />
+                <div className="col s12 m6 l6 xl6 input-field">
+                    <select name="company_city"
+                        onChange={(event) => {
+                            setData({
+                                ...data,
+                                company_address: {
+                                    ...data.company_address,
+                                    city: event.target.value
+                                }
+                            })
+                        }}
+                        defaultValue={data.company_address.city}
+                        ref={
+                            register({
+                                required: { value: true, message: "Debes escoger un municipio" }
+                            })
+                        }
+                    >
+                        <option value="" disabled defaultValue>Escoge un municipio</option>
+                        <option>Medellín</option>
+                        <option>Itagüí</option>
+                        <option>Bello</option>
+                        <option>Envigado</option>
+                        <option>Sabaneta</option>
+                        <option>Caldas</option>
+                        <option>La Estrella</option>
+                        <option>Barbosa</option>
+                        <option>Girardota</option>
+                    </select>
+                    <label htmlFor="company_city" >Municipio del negocio</label>
+                    {errors.company_city &&
+                        <span className="new badge orange" data-badge-caption={errors?.company_city?.message} />
                     }
                 </div>
             </div>
