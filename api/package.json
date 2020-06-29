@@ -1,0 +1,35 @@
+{
+  "name": "api-rest-tibii",
+  "version": "0.1.0",
+  "description": "API REST para plataforma de gestion de clientes, productos, pedidos hecha con Node JS, Mongo DB , Express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "Node",
+    "JS",
+    "mongo",
+    "db",
+    "express",
+    "api",
+    "rest",
+    "backend"
+  ],
+  "author": "Yeisson Osorno",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.19",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-pagination": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
