@@ -5,7 +5,6 @@ import { FirebaseAppProvider } from "reactfire";
 import firebaseConfig from "./assets/scripts/firebaseConfig";
 
 import "materialize-css/dist/css/materialize.min.css";
-import "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 
 import App from "./App";
